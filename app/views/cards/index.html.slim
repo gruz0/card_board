@@ -1,2 +1,5 @@
-h1 Cards#index
-p Find me in app/views/cards/index.html.slim
+.row
+  - @cards.each do |card|
+    .col-md-4
+      = card.post.name
+      = card.post.type
