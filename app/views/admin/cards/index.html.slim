@@ -1,0 +1,6 @@
+.row
+  - @cards.each do |card|
+    .col-md-4
+      = card.post.name
+      = card.post.type
+      = link_to 'редактировать', edit_admin_card_path(card)

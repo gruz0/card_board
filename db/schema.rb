@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20160722103749) do
   create_table "cards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "post_id"
+    t.index ["post_id"], name: "index_cards_on_post_id"
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -31,12 +33,10 @@ ActiveRecord::Schema.define(version: 20160722103749) do
   create_table "posts", force: :cascade do |t|
     t.string   "name"
     t.string   "type"
-    t.integer  "card_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["card_id"], name: "index_posts_on_card_id"
   end
 
   create_table "videos", force: :cascade do |t|
