@@ -16,7 +16,7 @@ class Admin::CardsController < Admin::BaseController
   def update
     respond_to do |format|
       if @card.update(card_params)
-        format.html { redirect_to @card, notice: t('.success') }
+        format.html { redirect_to [:admin, @card], notice: t('.success') }
       else
         format.html { render :edit }
       end
