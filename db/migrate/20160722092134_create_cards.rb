@@ -1,5 +1,5 @@
 class CreateCards < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :cards do |t|
       t.timestamps
     end
@@ -7,5 +7,9 @@ class CreateCards < ActiveRecord::Migration[5.0]
     6.times do
       Card.create!
     end
+  end
+
+  def down
+    drop_table :cards
   end
 end
