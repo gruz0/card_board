@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722103749) do
+ActiveRecord::Schema.define(version: 20160722221521) do
 
   create_table "cards", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 20160722103749) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.string   "material_type",        default: "pictures"
+    t.string   "preview_file_name"
+    t.string   "preview_content_type"
+    t.integer  "preview_file_size"
+    t.datetime "preview_updated_at"
   end
 
   create_table "videos", force: :cascade do |t|
