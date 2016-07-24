@@ -1,5 +1,5 @@
 class Admin::CardsController < Admin::BaseController
-  before_filter :set_card, only: [:show, :update, :edit]
+  before_action :set_card, only: [:show, :update, :edit]
 
   def index
     @cards = Card.all

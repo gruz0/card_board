@@ -9,7 +9,7 @@
   .form-group
     = f.label :post_id, class: 'control-label col-sm-4'
     .col-sm-8
-      = f.text_field :post_id, class: 'form-control', required: true
+      = f.select :post_id, Post.all.collect {|p| [ p.name, p.id ] }, class: 'form-control', required: true
 
   .form-group
     .col-sm-offset-4.col-sm-8
