@@ -1,0 +1,8 @@
+= link_to 'Создать ноый пост', new_admin_post_path
+- @posts.each do |post|
+  .row
+    = post.name
+    = post.material_type
+    = link_to 'редактировать', edit_admin_post_path(post)
+    = link_to [:admin, post], data: {confirm: '.confirm'}, method: :delete do
+      | удалить

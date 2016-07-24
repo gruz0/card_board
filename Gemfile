@@ -53,6 +53,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim-rails', '3.1.0'
 gem 'bootstrap-sass', '3.3.6'
 gem 'paperclip', '5.0.0'
+gem 'cocoon', '1.2.9'
 
 group :production do
   gem 'exception_notification', '4.2.1'
