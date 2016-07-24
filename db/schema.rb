@@ -33,10 +33,12 @@ ActiveRecord::Schema.define(version: 20160722221521) do
   create_table "posts", force: :cascade do |t|
     t.string   "name"
     t.string   "material_type",        default: "pictures"
+    t.integer  "card_id"
     t.string   "preview_file_name"
     t.string   "preview_content_type"
     t.integer  "preview_file_size"
     t.datetime "preview_updated_at"
+    t.index ["card_id"], name: "index_posts_on_card_id"
   end
 
   create_table "videos", force: :cascade do |t|
