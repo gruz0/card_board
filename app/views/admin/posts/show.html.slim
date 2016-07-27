@@ -13,17 +13,19 @@
     h6
       Превьюшка
     = image_tag @post.preview.url(:original), class: 'img-responsive'
-.row
-  .col-md-4
-    h6
-      Сыылка на видосик
-    = @post.video.youtube_link
-.row
-  .col-md-4
-    h6
-      Картиночки
-    - @post.pictures.each do |pic|
-      =image_tag pic.image.url(:original), class: 'img-responsive'
+- if @post.video.present?
+  .row
+    .col-md-4
+      h6
+        Сыылка на видосик
+      = @post.video.youtube_link
+- if @post.pictures.present?
+  .row
+    .col-md-4
+      h6
+        Картиночки
+      - @post.pictures.each do |pic|
+        =image_tag pic.image.url(:original), class: 'img-responsive'
 
 = link_to edit_admin_post_path(@post) do
   = '.edit'

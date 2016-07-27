@@ -1,2 +1,8 @@
 h1 Создание нового поста
 == render 'form'
+.form-group
+  .col-sm-offset-4.col-sm-8
+    .btn-group.pull-right
+      - if @post.id.present?
+        = link_to t('.show'), [:admin, @post], class: 'btn btn-default'
+        = link_to t('.back'), admin_cards_path, class: 'btn btn-default'

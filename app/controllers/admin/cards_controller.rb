@@ -5,18 +5,15 @@ class Admin::CardsController < Admin::BaseController
     @cards = Card.all
   end
 
-  def show
-
-  end
-
   def edit
-
+    @post = Post.find_by_card_id(params[:id])
   end
 
   def update
     respond_to do |format|
-      if @card.update(card_params)
-        format.html { redirect_to [:admin, @card], notice: t('.success') }
+      @post = Post.find(params[:post])
+      if @post.update_attributes(card_id: @card.id)
+        format.html { redirect_to admin_cards_path, notice: '.success' }
       else
         format.html { render :edit }
       end

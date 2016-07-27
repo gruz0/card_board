@@ -1,20 +1,10 @@
-= form_for [:admin, @card], html: { class: 'form-horizontal' } do |f|
-  - if @card.errors.any?
-    #error_explanation
-      h2 Ошибки
-      ul
-        - @card.errors.full_messages.each do |message|
-          li = message
-
+= form_tag [:admin, @card], method: :put, class: 'form-horizontal' do
   .form-group
-    = f.label :post_id, class: 'control-label col-sm-4'
+    = label_tag 'post', class: 'control-label col-sm-4'
     .col-sm-8
-      = f.select :post_id, Post.all.collect {|p| [ p.name, p.id ] }, class: 'form-control', required: true
+      = select_tag 'post', options_for_select(Post.all.collect {|p| [ p.name, p.id ] }, @post.try(:id)), class: 'form-control', required: true
 
   .form-group
     .col-sm-offset-4.col-sm-8
       .btn-group.pull-right
-        = f.submit 'submit', class: 'btn btn-primary'
-        - if @card.id.present?
-          = link_to t('.show'), @card, class: 'btn btn-default'
-          = link_to t('.back'), admin_cards_path, class: 'btn btn-default'
+        = submit_tag 'submit', class: 'btn btn-primary'

@@ -15,8 +15,6 @@ ActiveRecord::Schema.define(version: 20160722221521) do
   create_table "cards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "post_id"
-    t.index ["post_id"], name: "index_cards_on_post_id"
   end
 
   create_table "pictures", force: :cascade do |t|

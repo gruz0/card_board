@@ -9,7 +9,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def new
-    @post = Post.new
+    @post = Post.find_or_create_by(name:'Шаблон')
   end
 
   def edit
@@ -57,31 +57,3 @@ class Admin::PostsController < Admin::BaseController
                                  pictures_attributes: [:id, :image, :_destroy])
   end
 end
-
-#
-# {
-#     "utf8"=>"✓",
-#     "_method"=>"patch",
-#     "authenticity_token"=>"ozrb5zP4pEMlosU7mLAHQu1S5kWr1xsVcLltEMYmB6MG+PDMahCSKDcI5gc9GbGPjvaxfi9uf56WbL6bH14N2w==",
-#     "post"=> {
-#         "name"=>"тестовый пост",
-#         "material_type"=>"pictures",
-#         "video_attributes"=>{
-#             "youtube_link"=>"asdfasdfa",
-#             "id"=>"3"
-#         },
-#         "pictures_attributes"=> {
-#             "1469388709505"=> {
-#                 "image"=>
-#                     #<ActionDispatch::Http::UploadedFile:0x007fabec789480
-#                       @content_type="image/jpeg",
-#                       @headers="Content-Disposition: form-data; name=\"post[pictures_attributes][1469388709505][image]\"; filename=\"sococoHQweb_original.jpg\"\r\nContent-Type: image/jpeg\r\n",
-#                       @original_filename="sococoHQweb_original.jpg",
-#                       @tempfile=#<File:/var/folders/wx/qn2n5gnn4xs_6tw6hbncs7zm0000gn/T/RackMultipart20160724-7972-1gylfm8.jpg>>,
-#                 "_destroy"=>"false"
-#             }
-#         }
-#     },
-#     "commit"=>"submit",
-#     "id"=>"8"
-# }

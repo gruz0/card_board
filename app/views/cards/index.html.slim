@@ -1,5 +1,6 @@
 .row
   - @cards.each do |card|
-    .col-md-4
-      = card.post.name
-      = card.post.material_type
+    - if card.post.present?
+      .col-md-4
+        = card.post.name
+        = card.post.preview
