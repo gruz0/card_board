@@ -1,6 +1,7 @@
-.row
-  - @cards.each do |card|
-    - if card.post.present?
-      .col-md-4
-        = card.post.name
-        = card.post.preview
+- @cards.each_slice(3).to_a.each_with_index do |cards, index|
+  .row.half-height
+    - cards.each do |card|
+      - if card.post.present?
+        .col-md-4#block
+          /= card.post.name
+          = image_tag card.post.preview, class: 'img-responsive', id: "preview"
