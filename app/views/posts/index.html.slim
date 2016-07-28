@@ -1,0 +1,17 @@
+.page-container
+  .object
+    .object__title
+      h1 Материалы
+
+    table.table.table-striped.table-hover
+      tr
+        th #
+        th Заголовок
+        th Тип
+        th Время создания
+      - @posts.each do |post|
+        tr.table__content
+          td == post.id
+          td == post.name
+          td == post.material_type
+          td == post.created_at

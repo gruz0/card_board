@@ -4,8 +4,8 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :material_type, default: 'pictures'
       t.belongs_to :card
-      
-      t.timestamp
+
+      t.timestamps
     end
   end
 end

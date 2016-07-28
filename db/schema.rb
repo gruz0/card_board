@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160722221521) do
     t.string   "name"
     t.string   "material_type",        default: "pictures"
     t.integer  "card_id"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "preview_file_name"
     t.string   "preview_content_type"
     t.integer  "preview_file_size"
