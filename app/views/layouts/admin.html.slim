@@ -8,18 +8,108 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    .navbar.navbar-inverse
-      .container
+    nav.navbar.navbar-default
+      .container-fluid
         .navbar-header
+          button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
           = link_to 'Панель администратора', admin_cards_path, class: 'navbar-brand'
-        .navbar-collapse.collapse
-          ul.nav.navbar-nav#menu
-            li= link_to 'Карточки', admin_cards_path
-            li= link_to 'Посты', admin_posts_path
-          ul.nav.navbar-nav.pull-right
-            li= link_to 'Фронтенд', root_path, role: 'menuitem'
+
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              = link_to 'Карточки', admin_cards_path
+            li
+              = link_to 'Материалы', admin_posts_path
+          ul.nav.navbar-nav.navbar-right
+            li
+              = link_to 'Фронтенд', root_path, role: 'menuitem'
+
     .container-fluid
       #flashes
         - flash.each do |kind, msg|
           = content_tag :div, msg, id: kind, class: 'alert alert-warning'
       = yield
+      javascript:
+        !function () {
+          'use strict';
+
+          $(document).ready(function () {
+            var counter = 0
+
+            $('.carousel').slick({dots: true})
+
+            $('.js-post-form').hide()
+            $('.js-post-form-for-' + $('#post-type').val()).show()
+
+            $('#post-type').on("change", function () {
+              var postType = $(this).val()
+              $('.js-post-form').hide()
+              $('.js-post-form-for-' + postType).show()
+            })
+
+            $('.js-add-image').on('click', function () {
+              counter = counter + 1
+              $(this)
+                      .parent()
+                      .find('div').last()
+                      .after('<div><input class="file-form" type="file" name="post[content_images][image_' + counter + ']" id="post-content-images-image-' + counter + '" accept="image/png,image/gif,image/jpeg" data-target="preview-' + counter + '"><img id="preview-' + counter + '" src="#"></div>')
+
+              $(".file-form").change(function () {
+                displayPreviewImage(this)
+              })
+            })
+
+            $(".file-form").change(function () {
+              displayPreviewImage(this)
+            })
+
+
+            if ($("#post_material_type").val() == 'video') {
+              $("#video").show();
+              $("#images").hide();
+            } else {
+              $("#images").show();
+              $("#video").hide();
+            }
+
+            $("#post_material_type").change(function () {
+              if (this.value == 'video') {
+                $("#video").show();
+                $("#images").hide();
+              } else {
+                $("#images").show();
+                $("#video").hide();
+              }
+            });
+
+            $(".js-delete-image").on("click", function (e) {
+              e.preventDefault()
+
+              if (window.confirm("Вы действительно хотите удалить эту картинку?")) {
+                $.post(this.href, function (data) {
+                  window.location.reload()
+                })
+              }
+            })
+
+            function displayPreviewImage(form) {
+              window.fileFormTarget = $(form).data('target')
+
+              if (form.files && form.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  $('#' + fileFormTarget)
+                          .attr('src', e.target.result)
+                          .show()
+                }
+
+                reader.readAsDataURL(form.files[0])
+              }
+            }
+          })
+        }()

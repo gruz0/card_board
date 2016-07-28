@@ -14,7 +14,6 @@
     hr
     .content__body
       - if card.post.material_type.eql? ('video')
-
         div
           - regex = %r{(https?://)?(www.|m.)?(youtube\.com/watch\?v=|youtu\.be/|youtube\.com/watch\?feature=player_embedded&v=|youtube\.com/embed/|youtu\.be/)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?(/.+)?}
           - video_frame = card.post.video.youtube_link.gsub(regex) do

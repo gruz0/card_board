@@ -1,31 +1,36 @@
-.row
-  .col-md-4
-    h6
-      Имя
-    = @post.name
-.row
-  .col-md-4
-    h6
-      Тип
-    = @post.material_type
-.row
-  .col-md-4
-    h6
-      Превьюшка
-    = image_tag @post.preview.url(:original), class: 'img-responsive'
-- if @post.video.present?
-  .row
-    .col-md-4
-      h6
-        Сыылка на видосик
-      = @post.video.youtube_link
-- if @post.pictures.present?
-  .row
-    .col-md-4
-      h6
-        Картиночки
-      - @post.pictures.each do |pic|
-        =image_tag pic.image.url(:original), class: 'img-responsive'
+.page-container
+  .object
+    .object__title
+      h1 Материал: "#{@post.name}"
 
-= link_to edit_admin_post_path(@post) do
-  = '.edit'
+    .object__actions
+      = link_to edit_admin_post_path(@post), class: 'btn btn-default btn-lg' do
+        'Редактировать
+      = link_to [:admin, @post], data: {confirm: '.confirm'}, method: :delete, class: 'btn btn-default btn-lg' do
+        'Удалить
+
+    .object__content
+      ul.list-group
+        li.list-group-item
+          = "Тип #{@post.material_type}"
+        li.list-group-item
+          = 'Содержимое'
+          - if @post.material_type.eql? ('video')
+            div
+              - regex = %r{(https?://)?(www.|m.)?(youtube\.com/watch\?v=|youtu\.be/|youtube\.com/watch\?feature=player_embedded&v=|youtube\.com/embed/|youtu\.be/)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?(/.+)?}
+              - video_frame = @post.video.youtube_link.gsub(regex) do
+                - youtube_id = $4
+                - src = "//www.youtube.com/embed/#{youtube_id}"
+                - %{<iframe width="900" height="512" src="#{src}" frameborder="0" allowfullscreen></iframe>}
+              = raw video_frame
+          - else
+            div
+              .carousel
+                - @post.pictures.each do |pic|
+                  div
+                    = image_tag pic.image.url
+        li.list-group-item
+          = 'Картинка карточки'
+          = image_tag @post.preview.url
+
+        = link_to 'Назад', admin_posts_path, class: 'btn btn-default'

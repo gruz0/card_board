@@ -17,3 +17,100 @@
   font-weight: bold !important;
   color: #00f !important;
 }
+
+.form {
+  width: 400px;
+}
+
+.object {
+  .object__title {
+    float: left;
+    margin: -15px 0 20px 0;
+  }
+
+  .object__actions {
+    float: right;
+
+    form {
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+
+  .object__content {
+    clear: both;
+  }
+
+  img {
+    width: 600px;
+  }
+}
+
+.list-group-item {
+  span {
+    width: 100px;
+    font-weight: 600;
+    display: block;
+    float: left;
+  }
+
+  form {
+    margin-left: 100px;
+  }
+}
+
+.carousel {
+  width: 600px;
+  margin: 0 0 0 120px;
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  }
+
+  .slick-dots li button::before {
+    font-size: 40px !important;
+  }
+}
+
+.table__actions a {
+  float: right;
+  margin-left: 10px;
+}
+
+.js-post-form {
+  display: none;
+}
+
+.js-post-form-for-video {
+  display: block;
+}
+
+.js-post-form-for-image img {
+  width: 200px;
+}
+
+.add-image {
+  margin-top: 10px;
+}
+
+.form-group img {
+  display: none;
+}
+
+.backgtound-preview {
+  width: 200px;
+}
+
+.content-images {
+  width: 100%;
+
+  div {
+    margin: 10px 0;
+  }
+
+  img {
+    display: block;
+  }
+}
+
