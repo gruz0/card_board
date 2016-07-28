@@ -1,32 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "slick";
+@import "slick-theme";
+@import "card";
 
-
-.row > .col-md-4{
-  padding: 0;
+.navbar {
+  margin-bottom: 0;
 }
-@media (min-width: 992px) {
-  html, body {
-    height: 100%;
-  }
 
-  .container-fluid{
-    height: 100%;
-  }
+.show {
+  display: block;
+}
 
-  .row > div {
-    overflow:  hidden;
-    height:  100%;
-  }
-  .row.half-height {
-    height:  50%;
-  }
-
-  .row img {
-    max-height: 100%;
-  }
-
-  .row > .col-md-4{
-    padding: 0;
-  }
+.navbar-brand {
+  font-size: 26pt !important;
+  font-weight: bold !important;
+  color: #00f !important;
 }

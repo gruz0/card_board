@@ -18,68 +18,24 @@
 //= require cocoon
 //= require_tree .
 
+!function () {
+    'use strict';
 
+    $(document).ready(function(){
+        $('.carousel').slick({dots: true})
+    })
 
-$(document).ready(function(){
-    resizableGrid();
+    $(window).on('resize', function () {
+        $('.card').height( ($(window).width()) / 4.4 );
+    }).resize();
 
-    $(window).resize(function () {
-        resizableGrid();
-    });
-});
+    $(document).on('click', '.card__i', function () {
+        $('.js-cards').hide()
+        $($(this).find('.card').data('target')).show()
+    })
 
-// resizable drid 2x3
-function resizableGrid(){
-    if($(window).width() > 991) {
-        $(".col-md-4").each(function (index, value) {
-            var blockSelector = $(value);
-            var imageSelector = blockSelector.children();
-
-            if (blockSelector.width() >= blockSelector.height()) {
-                if (imageSelector.width() <= blockSelector.width()) {
-                    verticalAlign(imageSelector, blockSelector);
-                }
-
-                if (imageSelector.height() <= blockSelector.height()){
-                    horizontalAlign(imageSelector, blockSelector);
-                }
-            } else {
-                if (imageSelector.width() <= blockSelector.width()) {
-                    verticalAlign(imageSelector, blockSelector);
-                }
-
-                if (imageSelector.height() <= blockSelector.height()){
-                    horizontalAlign(imageSelector, blockSelector);
-                }
-            }
-        });
-    } else {
-        $(".col-md-4").each(function (index, value) {
-            var blockSelector = $(value);
-            var imageSelector = blockSelector.children();
-
-            imageSelector.css('max-height', 'inherit');
-            imageSelector.css('max-width', '100%');
-            imageSelector.css('position', 'inherit');
-            imageSelector.css('left', '0px');
-            imageSelector.css('top', '0px');
-        });
-    }
-
-}
-
-function verticalAlign(imageSelector, blockSelector) {
-    imageSelector.css('max-height', 'inherit');
-    imageSelector.css('max-width', '100%');
-    imageSelector.css('position', 'absolute');
-    imageSelector.css('left', 0);
-    imageSelector.css('top', -((imageSelector.width() - blockSelector.width()) / 2));
-}
-
-function horizontalAlign(imageSelector, blockSelector) {
-    imageSelector.css('max-width', 'inherit');
-    imageSelector.css('max-height', '100%');
-    imageSelector.css('position', 'absolute');
-    imageSelector.css('top', 0);
-    imageSelector.css('left', -((imageSelector.width() - blockSelector.width()) / 2));
-}
+    $(document).on('click', '.content__close', function () {
+        $('.js-cards').show()
+        $('.content').hide()
+    })
+}();

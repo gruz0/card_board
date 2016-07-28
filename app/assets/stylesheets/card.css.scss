@@ -1,0 +1,62 @@
+@mixin box-shadow($top, $left, $blur, $color) {
+  -webkit-box-shadow: $top $left $blur $color;
+  -moz-box-shadow: $top $left $blur $color;
+  box-shadow: $top $left $blur $color;
+}
+
+.card {
+  background-color: #fff;
+  margin: 10px 0;
+  overflow: hidden;
+  border: 1px solid #999;
+  padding: 5px;
+  @include box-shadow(1px, 1px, 1px, #999);
+
+  .card__title {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .card__background {
+    height: 90%;
+    overflow: hidden;
+
+    img {
+      height: auto;
+      max-height: 100%;
+      display: block;
+      width: auto;
+    }
+  }
+
+  &:hover {
+    @include box-shadow(3px, 3px, 3px, #999);
+  }
+}
+
+.content {
+  display: none;
+  width: 900px;
+  margin: 0 auto;
+
+  .content__title {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .content__close {
+    margin: 25px 0;
+  }
+
+  .content__body div {
+    margin: 0 auto 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.slick-dots li button::before {
+  font-size: 40px !important;
+}

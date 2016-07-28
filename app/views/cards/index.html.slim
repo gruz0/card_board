@@ -1,7 +1,33 @@
-- @cards.each_slice(3).to_a.each_with_index do |cards, index|
-  .row.half-height
-    - cards.each do |card|
-      - if card.post.present?
-        .col-md-4#block
-          /= card.post.name
-          = image_tag card.post.preview, class: 'img-responsive', id: "preview"
+.row.js-cards.cards
+  - @cards.each do |card|
+    .col-xs-6.col-md-4.card__i
+      .card data-target=".content__#{card.id}"
+        .card__title == card.post.name
+        .card__background
+          = image_tag card.post.preview.url
+
+
+- @cards.each do |card|
+  .content class="content__#{card.id}"
+    .content__title
+      | #{card.post.name}:
+    hr
+    .content__body
+      - if card.post.material_type.eql? ('video')
+
+        div
+          - regex = %r{(https?://)?(www.|m.)?(youtube\.com/watch\?v=|youtu\.be/|youtube\.com/watch\?feature=player_embedded&v=|youtube\.com/embed/|youtu\.be/)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?(/.+)?}
+          - video_frame = card.post.video.youtube_link.gsub(regex) do
+            - youtube_id = $4
+            - src = "//www.youtube.com/embed/#{youtube_id}"
+            - %{<iframe width="900" height="512" src="#{src}" frameborder="0" allowfullscreen></iframe>}
+          = raw video_frame
+      - else
+        div
+          .carousel
+            - card.post.pictures.each do |pic|
+              div
+                = image_tag pic.image.url
+
+
+    button.content__close.btn Закрыть
