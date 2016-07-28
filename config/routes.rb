@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  resources :cards, only: [:index, :show]
+  resources :cards, only: [:index]
   resources :posts, only: [:index]
   root to: 'cards#index'
 

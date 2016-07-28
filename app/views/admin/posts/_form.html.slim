@@ -7,18 +7,18 @@
           li = message
 
   .form-group
-    = f.label :name
+    = f.label 'Название'
     = f.text_field :name, class: 'form-control', required: true
   .form-group
-    = f.label :material_type
+    = f.label 'Тип материала'
     = f.select :material_type, options_for_select([['Изображения','pictures'], ['Видео', 'video']], @post.material_type), class: 'form-control', required: true
   .form-group
-    = f.label :preview
+    = f.label 'Фоновое изображение'
     = f.file_field :preview
   #video
     = f.fields_for :video do |v|
       .form-group.js-post-formjs-post-form.js-post-form-for-video
-        = v.label :youtube_link, class: 'control-label col-sm-4'
+        = v.label 'Ссылка на youtube', class: 'control-label col-sm-4'
         = v.text_field :youtube_link, class: 'form-control'
   #images
     .form-group

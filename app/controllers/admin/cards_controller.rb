@@ -13,7 +13,7 @@ class Admin::CardsController < Admin::BaseController
     respond_to do |format|
       @post = Post.find(params[:post])
       if @post.update_attributes(card_id: @card.id)
-        format.html { redirect_to admin_cards_path, notice: '.success' }
+        format.html { redirect_to admin_cards_path, notice: 'Карточка успешно обновлена!' }
       else
         format.html { render :edit }
       end

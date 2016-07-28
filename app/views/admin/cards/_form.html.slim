@@ -1,10 +1,10 @@
-= form_tag [:admin, @card], method: :put, class: 'form-horizontal' do
+= form_tag [:admin, @card], method: :put do
   .form-group
-    = label_tag 'post', class: 'control-label col-sm-4'
-    .col-sm-8
-      = select_tag 'post', options_for_select(Post.all.collect {|p| [ p.name, p.id ] }, @post.try(:id)), class: 'form-control', required: true
+    = label_tag 'Материал для карточки'
+    = select_tag 'post', options_for_select(Post.all.collect {|p| [ p.name, p.id ] }, @post.try(:id)), required: true
 
   .form-group
     .col-sm-offset-4.col-sm-8
       .btn-group.pull-right
-        = submit_tag 'submit', class: 'btn btn-primary'
+        = submit_tag 'Сохранить', class: 'btn btn-primary'
+        = link_to 'Назад', admin_posts_path, class: 'btn btn-default'

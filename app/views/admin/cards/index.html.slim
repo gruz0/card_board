@@ -8,5 +8,5 @@ table.table.table-striped.table-hover
   - @cards.each do |card|
     tr.table__content
       td == card.id
-      td == card.post.name
+      td == card.post.name if card.post.present?
       td == link_to 'редактировать', edit_admin_card_path(card)

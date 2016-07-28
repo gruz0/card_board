@@ -20,7 +20,7 @@ class Admin::PostsController < Admin::BaseController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to [:admin, @post], notice: '.success' }
+        format.html { redirect_to [:admin, @post], notice: 'Материал успешно создан!' }
       else
         format.html { render :new }
       end
@@ -30,7 +30,7 @@ class Admin::PostsController < Admin::BaseController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to [:admin, @post], notice: 'Успех' }
+        format.html { redirect_to [:admin, @post], notice: 'Материал успешно обновлен!' }
       else
         format.html { render :edit }
       end
@@ -40,7 +40,7 @@ class Admin::PostsController < Admin::BaseController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to admin_posts_path, notice: 'Успех' }
+      format.html { redirect_to admin_posts_path, notice: 'Материал успешно удален!' }
     end
   end
 

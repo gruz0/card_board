@@ -4,7 +4,7 @@
       h1 Материалы
 
     .object__actions
-      == link_to 'Создать ноый пост', new_admin_post_path, class: 'btn btn-default btn-info btn-lg'
+      == link_to 'Создать новый материал', new_admin_post_path, class: 'btn btn-default btn-info btn-lg'
 
     table.table.table-striped.table-hover
       tr
@@ -19,5 +19,5 @@
           td == link_to post.name, admin_post_path(post)
           td == post.material_type
           td == link_to 'редактировать', edit_admin_post_path(post)
-          td == link_to [:admin, post], data: {confirm: '.confirm'}, method: :delete do
+          td == link_to [:admin, post], data: {confirm: 'Действительно хотите удалить?'}, method: :delete do
             | удалить

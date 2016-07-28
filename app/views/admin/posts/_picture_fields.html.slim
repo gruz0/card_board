@@ -1,6 +1,6 @@
 .form-group
-  = f.label :image, class: 'control-label col-sm-4'
+  = f.label 'Изображение', class: 'control-label col-sm-4'
   .col-sm-8
     = f.object.image if f.object.image.present?
     = f.file_field :image
-    = link_to_remove_association "remove picture", f
+    = link_to_remove_association "удалить", f
