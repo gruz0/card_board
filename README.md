@@ -1,24 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to use Vagrant
 
-Things you may want to cover:
+Install Vagrant for VirtualBox from official website.
 
-* Ruby version
+Run Vagrant in project directory:
+```
+vagrant up
+```
 
-* System dependencies
+Connect to SSH in Vagrant:
+```
+vagrant ssh
+```
 
-* Configuration
+Switch to actual Ruby version with RVM (version specified in `ansible-vagrant/playbook.yml`):
+```
+rvm use 2.2.3
+```
 
-* Database creation
+Change dir to /vagrant:
+```
+chdir /vagrant
+```
 
-* Database initialization
+Install required gems:
+```
+bundle install
+```
 
-* How to run the test suite
+Prepare database:
+```
+bundle exec db:create
+bundle exec db:migrate
+bundle exec db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Run Rails server:
+```
+bundle exec rails s --binding=0.0.0.0
+```
 
-* Deployment instructions
+Open your browser and navigate to `http://192.168.40.12:3000` to use application. Enjoy! :-)
 
-* ...

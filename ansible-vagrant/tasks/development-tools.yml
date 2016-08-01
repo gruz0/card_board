@@ -1,0 +1,19 @@
+- name: install the 'Development tools' package group
+  yum: >
+    name="@Development tools"
+    state=present
+
+- name: Install Development Tools
+  yum: pkg={{item}} state=present
+  with_items:
+    - patch
+    - readline
+    - readline-devel
+    - zlib
+    - zlib-devel
+    - libyaml-devel
+    - libffi-devel
+    - openssl-devel
+    - bzip2
+    - git
+

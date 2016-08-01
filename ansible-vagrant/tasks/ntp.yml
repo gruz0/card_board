@@ -1,0 +1,22 @@
+- name: Be sure ntp is installed
+  yum: >
+    pkg=ntp
+    state=installed
+
+- name: ensure ntp is disabled
+  service: >
+    name=ntpd
+    enabled=no
+  sudo: yes
+  tags: ntp
+
+- name: be sure tzdata is latest
+  yum: pkg=tzdata state=latest
+
+- name: Add crontab to run hourly
+  cron: >
+    name="Run ntpdate"
+    job="/usr/sbin/ntpdate time.nist.gov ntp.ix.ru pool.ntp.org >> /var/log/ntpdate.log 2>&1"
+    special_time="hourly"
+    state=present
+

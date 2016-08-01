@@ -1,0 +1,38 @@
+- name: Ensure necessary packages are installed
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - curl
+    - gnupg2
+
+- name: Ensure that GPG key for RVM is installed
+  shell: command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+  become: yes
+  become_user: vagrant
+
+- name: Ensure that RVM is installed
+  shell: unset rvm_path; unset GEM_HOME; \curl -L https://get.rvm.io | bash -s stable
+  become: yes
+  become_user: vagrant
+
+- name: Ensure that Ruby is installed
+  shell: source ~/.profile; rvm install {{ ruby_version }}
+  become: yes
+  become_user: vagrant
+
+- name: Adding RVM autoupdate
+  shell: echo rvm_autoupdate_flag=2 >> ~/.rvmrc
+  become: yes
+  become_user: vagrant
+
+- name: Install bundle
+  command: bash -lc "rvm use {{ ruby_version }}; cd /vagrant; gem install bundler"
+  become: yes
+  become_user: vagrant
+
+- name: Install gems
+  command: bash -lc "rvm use {{ ruby_version }}; cd /vagrant; bundle install"
+  become: yes
+  become_user: vagrant
+

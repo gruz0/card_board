@@ -1,0 +1,14 @@
+# Нужен для корректной установки гема rmagick
+- name: Ensure that ImageMagick is installed
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ImageMagick
+    - ImageMagick-devel
+
+- name: Ensure Vim is installed
+  yum: >
+    pkg=vim
+    state=present
+

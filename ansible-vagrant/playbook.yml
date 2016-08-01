@@ -1,0 +1,17 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: true
+  vars:
+    ruby_version: 'ruby-2.2.3'
+
+  tasks:
+
+  - name: install libselinux-python
+    yum: name=libselinux-python state=present
+
+  - include: tasks/development-tools.yml
+  - include: tasks/ntp.yml
+  - include: tasks/ruby.yml
+  - include: tasks/other.yml
+
