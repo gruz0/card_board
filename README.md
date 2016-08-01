@@ -21,7 +21,7 @@ rvm use 2.2.3
 
 Change dir to /vagrant:
 ```
-chdir /vagrant
+cd /vagrant
 ```
 
 Install required gems:
