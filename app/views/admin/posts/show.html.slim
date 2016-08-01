@@ -10,27 +10,32 @@
         'Удалить
 
     .object__content
-      ul.list-group
-        li.list-group-item
-          = "Тип #{@post.material_type}"
-        li.list-group-item
-          = 'Содержимое'
-          - if @post.material_type.eql? ('video')
-            div
-              - regex = %r{(https?://)?(www.|m.)?(youtube\.com/watch\?v=|youtu\.be/|youtube\.com/watch\?feature=player_embedded&v=|youtube\.com/embed/|youtu\.be/)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?(/.+)?}
-              - video_frame = @post.video.youtube_link.gsub(regex) do
-                - youtube_id = $4
-                - src = "//www.youtube.com/embed/#{youtube_id}"
-                - %{<iframe width="900" height="512" src="#{src}" frameborder="0" allowfullscreen></iframe>}
-              = raw video_frame
-          - else
-            div
-              .carousel
-                - @post.pictures.each do |pic|
-                  div
-                    = image_tag pic.image.url
-        li.list-group-item
-          = 'Картинка карточки'
-          = image_tag @post.preview.url
+      .row
+        .col-md-6
+          ul.list-group
+            li.list-group-item
+              = "Тип #{@post.material_type}"
+            li.list-group-item
+              = 'Картинка карточки'
+              = image_tag @post.preview.url
+        .col-md-6
+          ul.list-group
+            li.list-group-item
+              = 'Содержимое'
+            li.list-group-item
+              - if @post.material_type.eql? ('video')
+                div
+                  - regex = %r{(https?://)?(www.|m.)?(youtube\.com/watch\?v=|youtu\.be/|youtube\.com/watch\?feature=player_embedded&v=|youtube\.com/embed/|youtu\.be/)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?(/.+)?}
+                  - video_frame = @post.video.youtube_link.gsub(regex) do
+                    - youtube_id = $4
+                    - src = "//www.youtube.com/embed/#{youtube_id}"
+                    - %{<iframe width="900" height="512" src="#{src}" frameborder="0" allowfullscreen></iframe>}
+                  = raw video_frame
+              - else
+                div
+                  .carousel
+                    - @post.pictures.each do |pic|
+                      div
+                        = image_tag pic.image.url
 
         = link_to 'Назад', admin_posts_path, class: 'btn btn-default'
