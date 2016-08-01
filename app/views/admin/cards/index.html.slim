@@ -1,12 +1,13 @@
-h1 Карточки
+.well.well-lg.col-sm-12.col-md-8.col-md-offset-2.col-lg-8.col-lg-offset-2
+  h1 Карточки
 
-table.table.table-striped.table-hover
-  tr
-    th Позиция
-    th Связанный материал
-    th
-  - @cards.each do |card|
-    tr.table__content
-      td == card.id
-      td == card.post.name if card.post.present?
-      td == link_to 'редактировать', edit_admin_card_path(card)
+  table.table.table-striped.table-hover
+    tr
+      th Позиция
+      th Связанный материал
+      th
+    - @cards.each do |card|
+      tr.table__content
+        td == card.id
+        td == card.post.name if card.post.present?
+        td == link_to 'редактировать', edit_admin_card_path(card)
