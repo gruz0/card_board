@@ -1,0 +1,23 @@
+= form_for [:admin, @settings] do |f|
+  - if @settings.errors.any?
+    #error_explanation
+      h2 Ошибки
+      ul
+        - @settings.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = f.label 'Текст логотипа'
+    = f.text_field :title_name, class: 'form-control'
+  .form-group
+    = f.label 'Цвет логотипа'
+    = f.text_field :title_color, class: 'form-control'
+  .form-group
+    = f.label 'Цвет фона'
+    = f.text_field :background_color, class: 'form-control'
+
+  .form-group
+    .col-sm-offset-4.col-sm-8
+      .btn-group.pull-right
+        = f.submit 'Сохранить', class: 'btn btn-primary'
+        = link_to 'Назад', admin_posts_path, class: 'btn btn-default'

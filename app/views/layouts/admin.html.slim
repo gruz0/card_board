@@ -24,6 +24,8 @@ html
               = link_to 'Карточки', admin_cards_path
             li
               = link_to 'Материалы', admin_posts_path
+            li
+              = link_to 'Настройки', edit_admin_setting_path(Settings.last)
           ul.nav.navbar-nav.navbar-right
             li
               = link_to 'Фронтенд', root_path, role: 'menuitem'

@@ -1,12 +1,15 @@
 doctype html
 html
   head
-    title Card Board
+    - if @settings.title_name.present?
+      title = @settings.title_name
+    - else
+      title Card Board
     = csrf_meta_tags
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
 
-  body
+  body style="background-color: #{@settings.background_color}"
     .container-fluid
       nav.navbar.navbar-default
         .container-fluid
@@ -16,7 +19,11 @@ html
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            = link_to 'Card board', root_path, class: 'navbar-brand'
+            = link_to root_path, class: 'navbar-brand', style: "color: #{@settings.title_color}" do
+              - if @settings.title_name.present?
+                = @settings.title_name
+              - else
+                'Card Board
 
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
@@ -46,4 +53,3 @@ html
           $('.content').hide()
         })
       }();
-

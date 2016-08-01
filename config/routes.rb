@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :cards, only: [:index, :show, :edit, :update]
     resources :posts
+    resources :settings, only: [:edit, :update]
   end
 
   resources :cards, only: [:index]

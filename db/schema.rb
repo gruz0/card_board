@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722221521) do
+ActiveRecord::Schema.define(version: 20160801071022) do
 
   create_table "cards", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20160722221521) do
     t.integer  "preview_file_size"
     t.datetime "preview_updated_at"
     t.index ["card_id"], name: "index_posts_on_card_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "title_color"
+    t.string   "title_name"
+    t.string   "background_color"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "videos", force: :cascade do |t|
